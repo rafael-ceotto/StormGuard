@@ -1,0 +1,40 @@
+# ===== TRULY MINIMAL STORMGUARD - FAST STARTUP =====
+# Stripped down to essentials for quick development testing
+
+# Core
+python-dotenv==1.0.0
+click==8.1.7
+
+# Airflow (orchestration)
+apache-airflow==2.11.0
+apache-airflow-providers-postgres==5.10.2
+apache-airflow-providers-docker==4.5.2
+psycopg2-binary==2.9.9
+
+# Data Processing (lightweight)
+pandas==2.1.4
+numpy==1.26.4
+
+# API
+fastapi==0.110.1
+uvicorn==0.27.0
+pydantic==2.6.4
+
+# Caching
+redis==5.0.1
+
+# HTTP
+requests==2.31.0
+httpx==0.26.0
+
+# Utilities
+python-dateutil==2.8.2
+pytz==2024.1
+pyyaml==6.0.1
+
+# Testing
+pytest==7.4.4
+
+# Code Quality
+black==24.2.0
+flake8==7.0.0

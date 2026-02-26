@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: stormguard
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: stormguard-config
+  namespace: stormguard
+data:
+  LOG_LEVEL: "INFO"
+  ENVIRONMENT: "production"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: stormguard-secrets
+  namespace: stormguard
+type: Opaque
+stringData:
+  POSTGRES_PASSWORD: "airflow"
+  REDIS_PASSWORD: ""
+  MINIO_ACCESS_KEY: "minioadmin"
+  MINIO_SECRET_KEY: "minioadmin"

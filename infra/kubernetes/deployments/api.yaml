@@ -1,0 +1,138 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stormguard-api
+  namespace: stormguard
+  labels:
+    app: stormguard-api
+    version: v1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: stormguard-api
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: stormguard-api
+        version: v1
+    spec:
+      containers:
+      - name: api
+        image: stormguard/api:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+          name: http
+        
+        # Environment variables
+        env:
+        - name: LOG_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: stormguard-config
+              key: LOG_LEVEL
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: stormguard-secrets
+              key: POSTGRES_PASSWORD
+        - name: REDIS_URL
+          value: "redis://stormguard-redis:6379/0"
+        - name: MINIO_ENDPOINT
+          value: "minio:9000"
+        
+        # Health checks
+        livenessProbe:
+          httpGet:
+            path: /live
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 2
+        
+        # Resource limits
+        resources:
+          requests:
+            cpu: 500m
+            memory: 512Mi
+          limits:
+            cpu: 1000m
+            memory: 1024Mi
+        
+        # Volume mounts
+        volumeMounts:
+        - name: models
+          mountPath: /app/models
+        - name: cache
+          mountPath: /tmp/cache
+      
+      # Volumes
+      volumes:
+      - name: models
+        configMap:
+          name: stormguard-models
+      - name: cache
+        emptyDir: {}
+      
+      # Node selector (optional)
+      # nodeSelector:
+      #   workload: ml
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stormguard-api
+  namespace: stormguard
+spec:
+  type: LoadBalancer
+  selector:
+    app: stormguard-api
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8000
+    protocol: TCP
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: stormguard-api-hpa
+  namespace: stormguard
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: stormguard-api
+  minReplicas: 3
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80

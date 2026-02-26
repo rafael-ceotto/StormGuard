@@ -1,0 +1,66 @@
+groups:
+  - name: stormguard_alerts
+    interval: 30s
+    rules:
+      - alert: HighErrorRate
+        expr: rate(stormguard_prediction_errors_total[5m]) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High error rate in StormGuard predictions"
+          description: "Error rate is {{ $value | humanizePercentage }} (threshold: 5%)"
+
+      - alert: ModelPerformanceDegraded
+        expr: stormguard_model_auc < 0.85
+        for: 1h
+        labels:
+          severity: critical
+        annotations:
+          summary: "Model performance degraded"
+          description: "AUC is {{ $value }} (threshold: 0.85)"
+
+      - alert: DataFreshnessSLA
+        expr: (time() - stormguard_last_data_update_timestamp) > 3600
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Data is stale"
+          description: "Last data update was {{ humanizeDuration (time() - stormguard_last_data_update_timestamp) }} ago"
+
+      - alert: DriftDetected
+        expr: stormguard_data_drift_detected == 1
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Data drift detected"
+          description: "Distribution has shifted significantly from training data"
+
+      - alert: HighLatency
+        expr: histogram_quantile(0.95, stormguard_prediction_latency_seconds) > 1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High prediction latency"
+          description: "P95 latency is {{ $value }}s (threshold: 1s)"
+
+      - alert: StorageQuotaExceeded
+        expr: (stormguard_storage_usage_bytes / stormguard_storage_quota_bytes) > 0.9
+        for: 1h
+        labels:
+          severity: warning
+        annotations:
+          summary: "Storage usage high"
+          description: "Using {{ $value | humanizePercentage }} of quota"
+
+      - alert: DatabaseConnectionPoolExhausted
+        expr: stormguard_db_connections_active >= stormguard_db_connections_max
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Database connection pool exhausted"
+          description: "All {{ $value }} connections are in use"
