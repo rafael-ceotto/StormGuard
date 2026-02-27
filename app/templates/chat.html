@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StormGuard - Disaster Prediction Chat</title>
+    <link rel="stylesheet" href="/static/css/chat.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🌪️ StormGuard</h1>
+                <p>AI-Powered Disaster Prediction & Alerts</p>
+            </div>
+            <div class="user-info">
+                <span id="username">Loading...</span>
+                <button id="logout-btn" class="btn-logout">Logout</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <h3>Conversations</h3>
+                    <button id="new-chat-btn" class="btn-new-chat">+ New Chat</button>
+                </div>
+                <div id="sessions-list" class="sessions-list">
+                    <p class="placeholder">No conversations yet</p>
+                </div>
+            </aside>
+
+            <!-- Chat Area -->
+            <main class="chat-area">
+                <!-- Chat Container -->
+                <div class="chat-container">
+                    <div id="messages-container" class="messages">
+                        <div class="welcome-message">
+                            <h2>Welcome to StormGuard</h2>
+                            <p>Ask about disaster risks in your area</p>
+                            <p class="examples">
+                                <strong>Try asking:</strong><br>
+                                • "What are the current hurricane risks near me?"<br>
+                                • "How should I prepare for a heat wave?"<br>
+                                • "Tell me about flood risks in my location"
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Input Area -->
+                    <div class="input-area">
+                        <div class="location-info">
+                            <span id="current-location">Location: Unknown</span>
+                        </div>
+                        <div class="input-group">
+                            <textarea 
+                                id="message-input"
+                                placeholder="Ask about disaster risks, preparedness tips, or historical data..."
+                                rows="3"
+                            ></textarea>
+                            <button id="send-btn" class="btn-send">Send</button>
+                        </div>
+                        <div class="input-hint">
+                            <p>Press <strong>Shift+Enter</strong> for new line, <strong>Enter</strong> to send</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Side Panel - Alerts & Info -->
+                <aside class="side-panel">
+                    <div class="panel-section">
+                        <h4>📢 Recent Alerts</h4>
+                        <div id="alerts-panel" class="alerts-panel">
+                            <p class="placeholder">No recent alerts</p>
+                        </div>
+                    </div>
+
+                    <div class="panel-section">
+                        <h4>📍 Your Preferences</h4>
+                        <button id="preferences-btn" class="btn-small">Edit Preferences</button>
+                    </div>
+
+                    <div class="panel-section">
+                        <h4>📊 Alert Stats</h4>
+                        <div id="stats-panel" class="stats-panel">
+                            <p class="placeholder">Loading...</p>
+                        </div>
+                    </div>
+                </aside>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <h2>Login to StormGuard</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" onclick="showRegisterModal()">Register</a></p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <h2>Register with StormGuard</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-name">Full Name</label>
+                    <input type="text" id="register-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-city">City</label>
+                    <input type="text" id="register-city">
+                </div>
+                <div class="form-group">
+                    <label for="register-timezone">Timezone</label>
+                    <select id="register-timezone">
+                        <option value="UTC">UTC</option>
+                        <option value="America/New_York">America/New_York</option>
+                        <option value="America/Los_Angeles">America/Los_Angeles</option>
+                        <option value="Europe/London">Europe/London</option>
+                        <option value="Asia/Tokyo">Asia/Tokyo</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="register-lat">Latitude</label>
+                    <input type="number" id="register-lat" step="0.0001" value="40.7128" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-lon">Longitude</label>
+                    <input type="number" id="register-lon" step="0.0001" value="-74.0060" required>
+                </div>
+                <button type="submit" class="btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Preferences Modal -->
+    <div id="preferences-modal" class="modal">
+        <div class="modal-content preferences-form">
+            <h2>Alert Preferences</h2>
+            <form id="preferences-form">
+                <fieldset>
+                    <legend>Alert Types</legend>
+                    <label>
+                        <input type="checkbox" name="hurricane_alerts" id="pref-hurricane">
+                        Hurricane Alerts
+                    </label>
+                    <label>
+                        <input type="checkbox" name="heat_wave_alerts" id="pref-heat">
+                        Heat Wave Alerts
+                    </label>
+                    <label>
+                        <input type="checkbox" name="flood_alerts" id="pref-flood">
+                        Flood Alerts
+                    </label>
+                    <label>
+                        <input type="checkbox" name="severe_storm_alerts" id="pref-storm">
+                        Severe Storm Alerts
+                    </label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Notification Settings</legend>
+                    <div class="form-group">
+                        <label for="pref-min-risk">Minimum Risk Level</label>
+                        <select id="pref-min-risk" name="min_risk_level">
+                            <option value="LOW">Low</option>
+                            <option value="MEDIUM" selected>Medium</option>
+                            <option value="HIGH">High</option>
+                            <option value="CRITICAL">Critical</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="pref-radius">Alert Radius (km)</label>
+                        <input type="number" id="pref-radius" name="alert_radius_km" min="10" max="500" value="100">
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="pref-push" name="enable_push">
+                            Push Notifications
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="pref-email" name="enable_email">
+                            Email Notifications
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Preferences</button>
+                    <button type="button" class="btn-secondary" onclick="closePreferencesModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="spinner hidden">
+        <div class="spinner-inner"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/js/chat.js"></script>
+</body>
+</html>
