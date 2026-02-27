@@ -19,7 +19,7 @@ from datetime import datetime
 import os
 
 # Import routers
-from api.routers import predictions, health, models, auth, users
+from api.routers import predictions, health, models, auth, users, chat
 
 # Setup logging
 logging.basicConfig(level=os.getenv('LOG_LEVEL', 'INFO'))
@@ -47,6 +47,7 @@ app.add_middleware(
 app.include_router(health.router, tags=["health"])
 app.include_router(auth.router, tags=["authentication"])
 app.include_router(users.router, tags=["users"])
+app.include_router(chat.router, tags=["chat"])
 app.include_router(predictions.router, prefix="/api/v1", tags=["predictions"])
 app.include_router(models.router, prefix="/api/v1", tags=["models"])
 
