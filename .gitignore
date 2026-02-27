@@ -44,6 +44,9 @@ ENV/
 
 # ===== Documentation (Local Only) =====
 md/
+airflow/*/README.md
+data_pipeline/*/README.md
+infra/*/README.md
 
 # ===== Environment Configuration =====
 .env
