@@ -60,12 +60,12 @@ class StormGuardTestSuite:
         """Log a message with timestamp"""
         timestamp = datetime.now().strftime("%H:%M:%S")
         levels = {
-            "INFO": f"{Colors.BLUE}ℹ{Colors.RESET}",
-            "SUCCESS": f"{Colors.GREEN}✓{Colors.RESET}",
-            "ERROR": f"{Colors.RED}✗{Colors.RESET}",
-            "WARN": f"{Colors.YELLOW}⚠{Colors.RESET}"
+            "INFO": f"{Colors.BLUE}[*]{Colors.RESET}",
+            "SUCCESS": f"{Colors.GREEN}[+]{Colors.RESET}",
+            "ERROR": f"{Colors.RED}[-]{Colors.RESET}",
+            "WARN": f"{Colors.YELLOW}[!]{Colors.RESET}"
         }
-        icon = levels.get(level, "•")
+        icon = levels.get(level, "[.]")
         print(f"[{timestamp}] {icon} {message}")
     
     def section(self, title: str):
@@ -79,7 +79,7 @@ class StormGuardTestSuite:
         self.results.append(TestResult(name, passed, message, duration))
         
         status = f"{Colors.GREEN}PASS{Colors.RESET}" if passed else f"{Colors.RED}FAIL{Colors.RESET}"
-        self.log(f"{name}: {status} ({duration:.2f}s) - {message}")
+        self.log(f"{name}: {status} ({duration:.2f}s) - {message}", "SUCCESS" if passed else "ERROR")
     
     # ==================== API Tests ====================
     
@@ -427,7 +427,7 @@ class StormGuardTestSuite:
             print(f"\n{Colors.BOLD}Failed Tests:{Colors.RESET}")
             for result in self.results:
                 if not result.passed:
-                    print(f"  {Colors.RED}✗{Colors.RESET} {result.name}: {result.message}")
+                    print(f"  {Colors.RED}[-]{Colors.RESET} {result.name}: {result.message}")
         
         print(f"\n{'=' * 60}\n")
         
