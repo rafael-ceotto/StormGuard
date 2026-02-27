@@ -2,7 +2,7 @@
 
 ## ✅ DAGs Ativas
 
-Este diretório contém **apenas as 4 DAGs principais** do StormGuard:
+Este diretório contém **5 DAGs principais** do StormGuard:
 
 ### 1. **data_ingestion_dag.py**
 - **DAG ID**: `data_ingestion_pipeline`
@@ -28,6 +28,28 @@ Este diretório contém **apenas as 4 DAGs principais** do StormGuard:
 - **Função**: Health checks, drift detection, performance monitoring
 - **Status**: ✅ Ativo
 
+### 5. **alert_trigger_dag.py** ⭐ NEW
+- **DAG ID**: `stormguard_alert_trigger`
+- **Frequência**: Every 6 hours (após inference)
+- **Função**: Identifica usuários em risco e envia alertas via Firebase FCM
+- **Integração**: StormGuard API (Python backend)
+- **Status**: ✅ Ativo
+
+**Fluxo de Integração:**
+```
+realtime_inference_dag
+        ↓
+    [predictions]
+        ↓
+alert_trigger_dag
+        ↓
+  [identificar usuários]
+        ↓
+  [enviar via API]
+        ↓
+  [Firebase FCM]
+```
+
 ---
 
 ## 📋 Estrutura
@@ -39,6 +61,7 @@ dags/
 ├── model_training_dag.py          (Training pipeline)
 ├── realtime_inference_dag.py      (Inference pipeline)
 ├── monitoring_dag.py              (Monitoring pipeline)
+├── alert_trigger_dag.py           (Alert trigger - NEW!)
 └── README.md                      (Este arquivo)
 ```
 
