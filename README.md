@@ -90,7 +90,6 @@ python test_suite.py --airflow
 - Organized documentation into md/ folder
 - Removed redundant monitoring stack (Prometheus/Grafana)
 - Installed missing dependencies (requests, sqlalchemy)
-- All 10+ commits pushed to GitHub
 
 ## License
 
