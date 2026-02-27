@@ -3,6 +3,7 @@ pytest configuration
 """
 
 import pytest
+import sys
 import os
 from pathlib import Path
 

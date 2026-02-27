@@ -44,7 +44,7 @@ docker-compose up -d
 **Caching:** Redis 7  
 **Storage:** MinIO (S3-compatible)  
 **Infrastructure:** Docker, Kubernetes, Terraform  
-**Testing:** Pytest, Locust  
+**Testing:** Pytest  
 
 ## Project Structure
 
