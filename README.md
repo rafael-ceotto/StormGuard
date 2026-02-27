@@ -35,17 +35,6 @@ docker-compose up -d
 - Airflow: http://localhost:8080 (airflow/airflow)
 - MinIO: http://localhost:9001
 
-## Documentation
-
-Complete documentation is in the [md/](md/) folder:
-
-- **[md/QUICKSTART_TESTING.md](md/QUICKSTART_TESTING.md)** - Test everything in 5 minutes
-- **[md/IMPLEMENTATION_GUIDE.md](md/IMPLEMENTATION_GUIDE.md)** - API reference & architecture
-- **[md/AIRFLOW_INTEGRATION.md](md/AIRFLOW_INTEGRATION.md)** - Airflow setup and DAGs
-- **[md/TESTING_GUIDE.md](md/TESTING_GUIDE.md)** - Complete testing guide
-- **[md/MANUAL_UI_TESTING.md](md/MANUAL_UI_TESTING.md)** - UI testing procedures
-- **[md/WORK_COMPLETE.md](md/WORK_COMPLETE.md)** - Project completion summary
-
 ## Technology Stack
 
 **Orchestration:** Apache Airflow 2.7.3, PostgreSQL 15  
@@ -110,4 +99,4 @@ MIT License
 ---
 
 **Status:** Open source project in active development  
-**Last Updated:** February 2026 | [View Documentation](md/)
+**Last Updated:** February 2026 
