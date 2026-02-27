@@ -1,4 +1,6 @@
-# Git ignore rules
+# Git ignore rules - StormGuard AI Platform
+
+# ===== Python =====
 __pycache__/
 *.py[cod]
 *$py.class
@@ -19,63 +21,146 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
-# Virtual environments
+# ===== Virtual Environments =====
 venv/
 env/
 ENV/
+.venv
+.env_*
 
-# IDE
+# ===== IDE & Editors =====
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
+*.sublime-project
+*.sublime-workspace
+.project
+.pydevproject
+.settings/
 
-# Environment variables
+# ===== Environment Configuration =====
 .env
 .env.local
 .env.*.local
+.env.test
+.env.dev
 
-# Logs
+# ===== Logging & Monitoring =====
 *.log
 logs/
+monitoring/						# Was prometheus/grafana - removed
 
-# Data
+# ===== Data Files =====
 data/
 *.csv
 *.parquet
+*.xlsx
+database_exports/
+*.sql
+*.dump
 
-# Models
+# ===== Machine Learning Models =====
 models/*.h5
 models/*.pkl
 models/*.joblib
+models/**/*.pth
+*.onnx
 
-# Temporary files
+# ===== Temporary Files =====
 tmp/
 temp/
 *.tmp
+.cache/
+*.cache
 
-# OS
+# ===== Operating System =====
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# Testing
+# ===== Testing =====
 .coverage
 htmlcov/
 .pytest_cache/
 .tox/
+.hypothesis/
 
-# Build artifacts
+# ===== Build Artifacts =====
 dist/
 build/
 *.egg-info/
 
-# Kubernetes
+# ===== Infrastructure & Container =====
 kubeconfig
 kube/config
+.docker/
+docker-compose.override.yml
+.dockerignore
 
-# Terraform
+# ===== Security & Credentials =====
+firebase-credentials.json
+firebase-key.json
+*.pem
+*.key
+credentials.json
+secret.txt
+.boto
+
+# ===== Airflow Specific =====
+airflow/logs/
+airflow/plugins/
+airflow/dags/__pycache__/
+airflow/dags/.airflowignore
+
+# ===== Database =====
+*.db
+*.sqlite
+*.sqlite3
+
+# ===== Redis =====
+dump.rdb
+appendonly.aof
+
+# ===== Terraform =====
 *.tfstate
 *.tfstate.*
 .terraform/
+.terraform.lock.hcl
+terraform.tfvars
+
+# ===== Node (if frontend repo added) =====
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# ===== Static Files =====
+staticfiles/
+media/
+.webassets-cache
+
+# ===== Version Control =====
+.git/
+.gitkeep
+merge_file_*.txt
+
+# ===== Poetry & Package Managers =====
+poetry.lock
+Pipfile.lock
+.python-version
+
+# ===== Misc =====
+.vscode/extensions.json
+.vscode/launch.json
+.local/
+.env_backup
+secrets.yml
+

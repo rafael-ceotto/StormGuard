@@ -1,8 +1,8 @@
-"""
-Chat JavaScript Module
-=======================
-Real-time WebSocket communication with StormGuard backend
-"""
+/**
+ * Chat JavaScript Module
+ * ======================
+ * Real-time WebSocket communication with StormGuard backend
+ */
 
 // Configuration
 const API_BASE_URL = window.location.origin + '/api/v1';

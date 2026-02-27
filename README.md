@@ -101,7 +101,6 @@ StormGuard AI é uma plataforma distribuída de Machine Learning/Deep Learning p
 ### Infraestrutura
 - **Docker & Docker-compose** - Containerização
 - **Kubernetes** - Orquestração de containers
-- **Prometheus + Grafana** - Monitoramento & Alertas
 - **Terraform** - Infrastructure as Code
 
 ### DevOps
@@ -111,7 +110,27 @@ StormGuard AI é uma plataforma distribuída de Machine Learning/Deep Learning p
 
 ---
 
-## 📦 Estrutura do Projeto
+## � Documentação & Guias
+
+**Comece por aqui:**
+- **[QUICKSTART_TESTING.md](QUICKSTART_TESTING.md)** - Teste tudo em 5 minutos
+- **[MANUAL_UI_TESTING.md](MANUAL_UI_TESTING.md)** - Teste de UI com registro de usuários
+
+**Implementação & Arquitetura:**
+- **[IMPLEMENTATION_GUIDE.md](IMPLEMENTATION_GUIDE.md)** - API reference completa + arquitetura
+- **[AIRFLOW_INTEGRATION.md](AIRFLOW_INTEGRATION.md)** - Setup do Airflow e DAG de alerts
+
+**Testes & QA:**
+- **[TESTING_GUIDE.md](TESTING_GUIDE.md)** - Guia completo de testes de todas as fases
+- **[test_suite.py](test_suite.py)** - Suite de testes automatizados (Python)
+
+**Planejamento:**
+- **[OPTIMIZATION_PLAN.md](OPTIMIZATION_PLAN.md)** - Análise de redundâncias e otimizações
+- **[FILE_INVENTORY.md](FILE_INVENTORY.md)** - Inventário completo de arquivos
+
+---
+
+## �📦 Estrutura do Projeto
 
 ```
 StormGuard/
