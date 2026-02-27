@@ -2,6 +2,8 @@
 
 **Production-ready AI platform for real-time weather disaster prediction**
 
+*Open Source | Currently in Development*
+
 ## Overview
 
 StormGuard is a distributed machine learning platform for proactive detection of weather disasters (floods, hurricanes, heatwaves, severe storms) using real-time meteorological data and historical patterns.
@@ -107,4 +109,5 @@ MIT License
 
 ---
 
+**Status:** Open source project in active development  
 **Last Updated:** February 2026 | [View Documentation](md/)

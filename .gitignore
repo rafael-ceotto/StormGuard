@@ -42,6 +42,9 @@ ENV/
 .pydevproject
 .settings/
 
+# ===== Documentation (Local Only) =====
+md/
+
 # ===== Environment Configuration =====
 .env
 .env.local
