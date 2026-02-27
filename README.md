@@ -66,24 +66,24 @@ StormGuard AI é uma plataforma distribuída de Machine Learning/Deep Learning p
         │                     │                     │
         ▼                     ▼                     ▼
    ┌─────────────┐  ┌──────────────────┐  ┌─────────────────┐
-   │  Dashboard  │  │    Alerts        │  │  Monitoring     │
-   │  (Grafana)  │  │  (Slack/Email)   │  │ (Prometheus)    │
+│  Dashboard  │  │    Alerts        │  │   Metrics       │
+│  (Airflow)  │  │  (Slack/Email)   │  │  (Database)     │
    └─────────────┘  └──────────────────┘  └─────────────────┘
 ```
 
 ---
 
-## 🛠️ Stack Tecnológico (Production-Ready)
+## 🛠️ Technology Stack (Production-Ready)
 
-### Orquestração & Pipeline
-- **Apache Airflow 2.x** - Orquestração de DAGs complexas
-- **PostgreSQL 14+** - Backend do Airflow + Metadata Store
-- **Apache Spark** - Processamento distribuído (Feature Engineering)
+### Orchestration & Pipeline
+- **Apache Airflow 2.x** - Complex DAG orchestration
+- **PostgreSQL 14+** - Airflow backend + Metadata Store
+- **Apache Spark** - Distributed data processing (Feature Engineering)
 
 ### Machine Learning
-- **TensorFlow 2.x** - Modelos Deep Learning
+- **TensorFlow 2.x** - Deep Learning models
 - **MLflow** - Model Registry & Experiment Tracking
-- **TensorBoard** - Visualização de treinamento
+- **TensorBoard** - Training visualization
 - **Optuna** - Hyperparameter Tuning
 
 ### Data
@@ -92,15 +92,15 @@ StormGuard AI é uma plataforma distribuída de Machine Learning/Deep Learning p
 - **Great Expectations** - Data Quality
 - **Pandas, NumPy, Polars** - Data Processing
 
-### API & Inferência
+### API & Inference
 - **FastAPI** - High-performance REST API
-- **Redis** - Caching distribuído
-- **Pydantic** - Validação de schemas
+- **Redis** - Distributed caching
+- **Pydantic** - Schema validation
 - **Gunicorn + Uvicorn** - Production ASGI
 
-### Infraestrutura
-- **Docker & Docker-compose** - Containerização
-- **Kubernetes** - Orquestração de containers
+### Infrastructure
+- **Docker & Docker-compose** - Containerization
+- **Kubernetes** - Container orchestration
 - **Terraform** - Infrastructure as Code
 
 ### DevOps
@@ -110,27 +110,28 @@ StormGuard AI é uma plataforma distribuída de Machine Learning/Deep Learning p
 
 ---
 
-## � Documentação & Guias
+## 📚 Documentation & Guides
 
-**Comece por aqui:**
-- **[QUICKSTART_TESTING.md](QUICKSTART_TESTING.md)** - Teste tudo em 5 minutos
-- **[MANUAL_UI_TESTING.md](MANUAL_UI_TESTING.md)** - Teste de UI com registro de usuários
+**Start Here:**
+- **[QUICKSTART_TESTING.md](QUICKSTART_TESTING.md)** - Test everything in 5 minutes
+- **[MANUAL_UI_TESTING.md](MANUAL_UI_TESTING.md)** - UI testing with user registration
 
-**Implementação & Arquitetura:**
-- **[IMPLEMENTATION_GUIDE.md](IMPLEMENTATION_GUIDE.md)** - API reference completa + arquitetura
-- **[AIRFLOW_INTEGRATION.md](AIRFLOW_INTEGRATION.md)** - Setup do Airflow e DAG de alerts
+**Implementation & Architecture:**
+- **[IMPLEMENTATION_GUIDE.md](IMPLEMENTATION_GUIDE.md)** - Complete API reference + architecture
+- **[AIRFLOW_INTEGRATION.md](AIRFLOW_INTEGRATION.md)** - Airflow setup and alert DAG
 
-**Testes & QA:**
-- **[TESTING_GUIDE.md](TESTING_GUIDE.md)** - Guia completo de testes de todas as fases
-- **[test_suite.py](test_suite.py)** - Suite de testes automatizados (Python)
+**Testing & QA:**
+- **[TESTING_GUIDE.md](TESTING_GUIDE.md)** - Complete testing guide for all phases
+- **[test_suite.py](test_suite.py)** - Automated test suite (Python)
 
-**Planejamento:**
-- **[OPTIMIZATION_PLAN.md](OPTIMIZATION_PLAN.md)** - Análise de redundâncias e otimizações
-- **[FILE_INVENTORY.md](FILE_INVENTORY.md)** - Inventário completo de arquivos
+**Planning & Analysis:**
+- **[WORK_COMPLETE.md](WORK_COMPLETE.md)** - Summary of completed work
+- **[OPTIMIZATION_ANALYSIS.md](OPTIMIZATION_ANALYSIS.md)** - Redundancy analysis and optimizations
+- **[FILE_INVENTORY.md](FILE_INVENTORY.md)** - Complete file inventory
 
 ---
 
-## �📦 Estrutura do Projeto
+## 📦 Project Structure
 
 ```
 StormGuard/
