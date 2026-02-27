@@ -20,7 +20,7 @@ pyarrow==14.0.1
 # Machine Learning & Deep Learning
 tensorflow==2.15.1
 scikit-learn==1.4.2
-optuna==2.13.0
+optuna==2.10.1
 
 # Model Registry & Experiment Tracking
 mlflow==2.12.1
