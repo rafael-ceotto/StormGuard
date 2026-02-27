@@ -19,6 +19,20 @@ numpy==1.26.4
 fastapi==0.110.1
 uvicorn==0.27.0
 pydantic==2.6.4
+websockets==11.0.3
+
+# Database ORM
+sqlalchemy==2.0.25
+
+# AI/RAG Stack (NEW)
+langchain==0.1.17
+openai==1.10.0
+pinecone-client==3.0.2
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+
+# Notifications (NEW)
+firebase-admin==6.4.0
 
 # Caching
 redis==5.0.1
