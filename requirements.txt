@@ -32,7 +32,7 @@ pydantic==2.6.4
 websockets==11.0.3
 
 # Database ORM
-sqlalchemy==2.0.25
+sqlalchemy==1.4.46
 
 # AI/RAG Stack
 langchain==0.1.17
