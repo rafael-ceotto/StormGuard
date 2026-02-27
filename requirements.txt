@@ -1,5 +1,5 @@
-# ===== TRULY MINIMAL STORMGUARD - FAST STARTUP =====
-# Stripped down to essentials for quick development testing
+# ===== STORMGUARD AI DEPENDENCIES =====
+# Complete dependency list for production deployment
 
 # Core
 python-dotenv==1.0.0
@@ -11,11 +11,21 @@ apache-airflow-providers-postgres==5.10.2
 apache-airflow-providers-docker==4.5.2
 psycopg2-binary==2.9.9
 
-# Data Processing (lightweight)
+# Data Processing
 pandas==2.1.4
 numpy==1.26.4
+scipy==1.11.4
+pyarrow==14.0.1
 
-# API
+# Machine Learning & Deep Learning
+tensorflow==2.15.1
+scikit-learn==1.4.2
+optuna==3.0.6
+
+# Model Registry & Experiment Tracking
+mlflow==2.12.1
+
+# API & Web
 fastapi==0.110.1
 uvicorn==0.27.0
 pydantic==2.6.4
@@ -24,31 +34,42 @@ websockets==11.0.3
 # Database ORM
 sqlalchemy==2.0.25
 
-# AI/RAG Stack (NEW)
+# AI/RAG Stack
 langchain==0.1.17
 openai==1.10.0
 pinecone-client==3.0.2
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
 
-# Notifications (NEW)
+# Notifications
 firebase-admin==6.4.0
 
-# Caching
+# Caching & Storage
 redis==5.0.1
+boto3==1.34.26
+
+# Data Quality
+great-expectations==0.18.17
+
+# Monitoring & Logging
+prometheus-client==0.19.0
+loguru==0.7.2
 
 # HTTP
 requests==2.31.0
 httpx==0.26.0
 
 # Utilities
+tqdm==4.66.4
 python-dateutil==2.8.2
 pytz==2024.1
 pyyaml==6.0.1
 
 # Testing
 pytest==7.4.4
+pytest-cov==4.1.0
 
 # Code Quality
 black==24.2.0
 flake8==7.0.0
+mypy==1.8.0
